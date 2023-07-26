@@ -22,7 +22,6 @@ fun TodoList(
     list: List<Todo>,
     padding: PaddingValues
 ) {
-
     Column(modifier = Modifier.padding(padding)) {
         LazyColumn(modifier = Modifier.fillMaxHeight()) {
             /*items(

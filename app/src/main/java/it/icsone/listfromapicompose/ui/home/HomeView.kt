@@ -12,7 +12,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.navigation.NavController
-import it.icsone.listfromapicompose.ui.commons.MyBottonNavBar
+import it.icsone.listfromapicompose.ui.commons.MyBottomNavBar
 import it.icsone.listfromapicompose.ui.commons.MyTopAppBar
 import it.icsone.listfromapicompose.ui.home.widgets.ErrorView
 import it.icsone.listfromapicompose.ui.home.widgets.LoadingView
@@ -40,7 +40,7 @@ fun HomeView(navController: NavController) {
             MyTopAppBar(navController = navController, title = "Home")
         },
         bottomBar = {
-            MyBottonNavBar(navController = navController)
+            MyBottomNavBar(navController = navController)
         },
         floatingActionButton = {
             FloatingActionButton(onClick = {
