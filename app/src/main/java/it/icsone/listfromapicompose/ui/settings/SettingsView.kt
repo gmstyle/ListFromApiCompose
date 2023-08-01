@@ -15,9 +15,6 @@ import it.icsone.listfromapicompose.ui.commons.MyTopAppBar
 @Composable
 fun SettingsView(navController: NavController) {
     Scaffold(
-        topBar = {
-            MyTopAppBar(navController = navController, title = "Home")
-        },
     ) {
         Column(
             modifier = Modifier

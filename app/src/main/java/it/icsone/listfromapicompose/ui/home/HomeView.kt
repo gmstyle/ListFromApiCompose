@@ -1,7 +1,9 @@
 package it.icsone.listfromapicompose.ui.home
 
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Refresh
+import androidx.compose.material3.FabPosition
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
@@ -12,7 +14,6 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.navigation.NavController
-import it.icsone.listfromapicompose.ui.commons.MyBottomNavBar
 import it.icsone.listfromapicompose.ui.commons.MyTopAppBar
 import it.icsone.listfromapicompose.ui.home.widgets.ErrorView
 import it.icsone.listfromapicompose.ui.home.widgets.LoadingView
@@ -23,7 +24,7 @@ import kotlinx.coroutines.launch
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
-fun HomeView(navController: NavController) {
+fun HomeView(navController: NavController, padding: PaddingValues) {
 
     val vm = koinViewModel<HomeViewModel>()
     val coroutineScope = rememberCoroutineScope()
@@ -36,12 +37,6 @@ fun HomeView(navController: NavController) {
 
     Scaffold(
         snackbarHost = { SnackbarHost(hostState = snackbarHostState) },
-        topBar = {
-            MyTopAppBar(navController = navController, title = "Home")
-        },
-        bottomBar = {
-            MyBottomNavBar(navController = navController)
-        },
         floatingActionButton = {
             FloatingActionButton(onClick = {
                 coroutineScope.launch {
@@ -51,21 +46,21 @@ fun HomeView(navController: NavController) {
                 Icon(imageVector = Icons.Filled.Refresh, contentDescription = "")
             }
         },
-    ) {
+    ) { _ ->
         when (uiState.value) {
             // Loader
-            is TodoListUiState.Loading -> LoadingView(padding = it)
+            is TodoListUiState.Loading -> LoadingView(padding = padding)
 
             // Success
             is TodoListUiState.Success -> {
                 val list = (uiState.value as TodoListUiState.Success).data
-                TodoList(navController = navController, list = list, padding = it)
+                TodoList(navController = navController, list = list, padding = padding)
             }
 
             // Error
             is TodoListUiState.Error -> {
                 val error = (uiState.value as TodoListUiState.Error).message
-                ErrorView(error = error, padding = it)
+                ErrorView(error = error, padding = padding)
             }
         }
     }
