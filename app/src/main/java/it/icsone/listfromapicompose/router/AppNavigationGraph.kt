@@ -47,9 +47,9 @@ private fun NavGraphBuilder.addSettingsRoute(navController: NavController) {
 
 
 sealed class Route(val route: String) {
-    object Home : Route("home")
-    object Detail : Route("detail")
-    object Settings : Route("settings")
+    data object Home : Route("home")
+    data object Detail : Route("detail")
+    data object Settings : Route("settings")
 
     fun withArgs(vararg args: String): String {
         return buildString {
