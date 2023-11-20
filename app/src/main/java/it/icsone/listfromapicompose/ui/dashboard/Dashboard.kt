@@ -11,6 +11,7 @@ import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -27,7 +28,7 @@ fun Dashboard(navController: NavController) {
     )
 
     val currentIndex = remember {
-        mutableStateOf(items.indexOf(BottomNavItem.Home))
+        mutableIntStateOf(items.indexOf(BottomNavItem.Home))
     }
 
     Scaffold(
